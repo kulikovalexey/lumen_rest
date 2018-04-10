@@ -11,6 +11,24 @@
 |
 */
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
+//$router->get('/', function () use ($router) {
+//    return $router->app->version();
+//});
+
+
+$router->get('/', function() use ($router) {
+    return "Lumen RESTful API";
+});
+
+$router->group(['prefix' => 'api/v1'], function($router)
+{
+    $router->get('book','BookController@index');
+
+    $router->get('book/{id}','BookController@getbook');
+
+    $router->post('book','BookController@createBook');
+
+    $router->put('book/{id}','BookController@updateBook');
+
+    $router->delete('book/{id}','BookController@deleteBook');
 });
